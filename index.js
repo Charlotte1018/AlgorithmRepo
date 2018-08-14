@@ -1,0 +1,1 @@
+var func = require ('./Library');
