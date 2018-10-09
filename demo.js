@@ -120,19 +120,6 @@
 //         return false;
 //     }
 // }
-/**
- * 数字千位符格式化
- * @param {*} num 
- */
-// function toThousands(num) {
-//     var num = (num || 0).toString(), result = '';
-//     while (num.length > 3) {
-//         result = ',' + num.slice(-3) + result;
-//         num = num.slice(0, num.length - 3);
-//     }
-//     if (num) { result = "$" + num + result; }
-//     return result;
-// }
 
 /**
  * 第二行math.add(2, 3)，在第一行require(‘math’)之后运行，因此必须等math.js加载完成。也就是说，如果加载时间很长，整个应用就会停在那里等。
@@ -145,8 +132,138 @@ AMD是”Asynchronous Module Definition”的缩写，意思就是”异步模�
 模块必须采用特定的define()函数来定义。
  */
 
-function replaceSpace(str)
-{
-    return str.replace(/\s/g, '')
-}
-console.log(replaceSpace('q e r '));
+// function replaceSpace(str) {
+//     return str.replace(/\s/g, '')
+// }
+// console.log(replaceSpace('q e r '));
+// function unique(arr) {
+//     var res = [];
+//     var json = {};
+//     for (var i = 0; i < arr.length; i++) {
+//         if (!json[arr[i]]) {
+//             res.push(arr[i]);
+//             json[arr[i]] = 1;
+//         }
+//     }
+//     return res;
+// }
+
+// function sum(arr){
+// 	return arr.reduce(function(pre, cur){
+//         return Number(pre) + Number(cur)
+//     })
+// }
+// console.log(sum(['2','6','1']))
+
+
+// function a(){
+//     var n = 3,
+//     m=4,
+//     p=2,count=0,
+//     food = [5,3,1],
+//     a = ['B 1','A 2', 'A 2','A 3']
+//     for(var i = 0; i < m; i++){
+//         var op = a[i].split(' ');
+//         if(op[0] == 'B'){
+//             food[op[1] - 1]--;
+//         }
+//         if(op[0] == 'A'){
+//             food[op[1] - 1]++;
+//         }
+//     }
+//     var pNum = food[p - 1];
+//     for(var j = 0; j < n; j++){
+//         if(food[j] < pNum){
+//             count++;
+//         }
+//     }
+//     console.log(count,food)
+// }
+// a();
+// function sum(arr){
+// 	return arr.reduce(function(pre, cur){
+//         return Number(pre) + Number(cur)
+//     })
+// }
+// var id = [0,0,0,0,1,8],
+// len = id.length,
+//     left = id.slice(0,3),
+//     right = id.slice(3),
+//     leftSum = sum(left),
+//     rightSum = sum(right),
+//     leftMin = Math.min.apply(null, left),
+//     rightMin = Math.min.apply(null, right),
+//     rightMax = Math.max.apply(null, right);
+//     console.log(left,right,leftSum,rightSum,leftMin,rightMin,rightMax)
+
+    // function searchKey(arr, key){
+    //     var len = arr.length;
+    //     for(var i = 0; i < len; i++){
+    //         if(arr[i] == key){
+    //             return i;
+    //         }
+    //     }
+    // }
+    // console.log(searchKey([1,1,1,1,5,6,8,3],8))
+
+
+
+
+
+    function sum(arr){
+        return arr.reduce(function(pre, cur){
+            return Number(pre) + Number(cur)
+        })
+    }
+    function diff(leftSum,rightSum){
+        var value;
+        if(leftSum < rightSum){
+            value = rightSum - leftSum;
+        } else {
+            value = leftSum - rightSum;
+        }
+        return value;
+    }
+    function searchKey(arr, key){
+        var len = arr.length;
+        for(var i = 0; i < len; i++){
+            if(arr[i] == key){
+                return i;
+            }
+        }
+    }
+    var id = read_line().split(''),
+        len = id.length,
+        left = id.slice(0,3),
+        right = id.slice(3),
+        leftSum = sum(left),
+        rightSum = sum(right),
+        leftMin = Math.min.apply(null, left),
+        rightMin = Math.min.apply(null, right),
+        rightMax = Math.max.apply(null, right);
+    if(leftSum == rightSum) print(0);
+    var op = 1;
+    if(value < 9){
+        print(1)
+    }
+    while(op == 1){
+        if(diff(leftSum,rightSum) < 9 - leftMin || diff(leftSum,rightSum) < rightMax){
+            print(op);
+        } else {
+            if(9 - leftMin > rightMax){
+                var index = searchKey(left,leftMin);
+                left[index] = 9;
+            } else {
+                var index = searchKey(right,rightMax);
+                rifht[index] = 9;
+            }
+            left = id.slice(0,3),
+            right = id.slice(3),
+            leftSum = sum(left),
+            rightSum = sum(right),
+            leftMin = Math.min.apply(null, left),
+            rightMin = Math.min.apply(null, right),
+            rightMax = Math.max.apply(null, right);
+            op++;
+        }
+    }

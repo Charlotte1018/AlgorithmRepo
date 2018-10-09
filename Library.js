@@ -175,5 +175,56 @@ function toThousands(num) {
     if (num) { result = "$" + num + result; }
     return result;
 }
+
+function toThousands(num) {
+    var num = num.toString(), result = '';
+    while (num.length > 3) {
+        result = ',' + num.slice(-3) + result;
+        num = num.slice(0, num.length - 3);
+    }
+    result = "$" + num + result;
+    return result;
+}
+
+/**
+ * 合并两个链表
+ */
+/*function ListNode(x){
+    this.val = x;
+    this.next = null;
+}*/
+function Merge(pHead1, pHead2)
+{
+    // write code here
+    var p1 = pHead1, p2 = pHead2, p,pHead;
+    if(!pHead1) return pHead2;
+    if(!pHead2) return pHead1;
+    if(p2.val<p1.val){
+        p = new ListNode(p2.val);
+        p2 = p2.next;
+    }else {
+        p = new ListNode(p1.val);
+        p1 = p1.next;
+    }
+    pHead = p;
+    while(p1 && p2){
+        if(p1.val < p2.val){
+            p.next = new ListNode(p1.val);
+            p = p.next;
+            p1 = p1.next;
+        } else {
+            p.next = new ListNode(p2.val);
+            p = p.next;
+            p2 = p2.next;
+        }
+    }
+    if(p1){
+        p.next = p1;
+    }
+    if(p2){
+        p.next = p2;
+    }
+    return pHead;
+}
 var func = new Algorithm();
 module.exports = func;
