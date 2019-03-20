@@ -37,15 +37,15 @@ function Shape() { }
 Shape.prototype.name = 'Shape';
 Shape.prototype.toString = function () {
     //this.constructor == Shape.prototype.constructor;
-    var consts = this.constructor;
-    return consts.uber ? consts.uber.toString() + ',' + this.name : this.name;
+    // var consts = this.constructor;
+    return this.uber ? this.uber.toString() + ',' + this.name : this.name;
 }
 function TwoDShape() { }
 var F = function () { }
 F.prototype = new Shape();
 TwoDShape.prototype = new F();
 TwoDShape.prototype.constructor = TwoDShape;
-TwoDShape.uber = Shape.prototype;
+TwoDShape.prototype.uber = Shape.prototype;
 TwoDShape.prototype.name = '2D Shape';
 
 var two = new TwoDShape();
@@ -63,7 +63,7 @@ Triangle.prototype.name = 'Triangle';
 Triangle.prototype.getArea = function () {
     return this.side * this.height / 2;
 }
-Triangle.uber = TwoDShape.prototype;
+Triangle.prototype.uber = TwoDShape.prototype;
 var tri = new Triangle(5, 10);
 console.log(tri.toString());
 /**

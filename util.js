@@ -56,7 +56,7 @@ function min() {
 /**
  * 顺时针打印一个二维矩阵
  */
-export function printMatrix(matrix) {
+function printMatrix(matrix) {
     // write code here
     var row = matrix.length;
     var col = matrix[0].length;
@@ -87,7 +87,7 @@ export function printMatrix(matrix) {
 /**
  * 获取URL中的参数
  */
-export function parse_url(_url) {
+function parse_url(_url) {
     var pattern = /(\w+)=(\w+)/ig;
     var parames = {};
     url.replace(pattern, function ($0, $1, $2) {
@@ -101,7 +101,7 @@ export function parse_url(_url) {
  * 获取Cookie
  * @param name cookie的名字
  */
-export function getCookie(name) {
+function getCookie(name) {
     var name = encodeURIComponent(name),
         cookieName = name + '=',
         cookieStart = document.cookie.indexOf(cookieName),
@@ -193,3 +193,34 @@ EventUtils.prototype = {
         }
     }
 }
+/**
+ * 深拷贝
+ */
+function deepCopy(p) {
+    var c = arguments[1] ? arguments[1] : {};
+    for (var i in p) {
+        if (p.hasOwnProperty(i)) {
+            console.log(typeof p[i])
+            if (typeof p[i] === 'object' && p[i] !== null) {
+                c[i] = Array.isArray(p[i]) ? [] : {};
+                arguments.callee(p[i], c[i]);
+            } else {
+                c[i] = p[i];
+            }
+        }
+    }
+    return c;
+}
+
+/**
+ * 字符串驼峰转化
+ */
+
+function parseTf(str) {
+    var reg = /-(\w)/g;
+    str = str.replace(reg, function ($1, $2) {
+        console.log($1.toUpperCase());
+        return $2.toUpperCase();
+    });
+    return str;
+};
